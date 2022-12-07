@@ -39,17 +39,63 @@ const prev = document.querySelector('.prev');
 const next = document.querySelector('.next');
 
 next.addEventListener('click', function(){
-    //verifico l'elemento attivo (itemActive)
-    //incremento il suo valore di 1
-    //aggiungere la class active al nuovo elemento dell'array items e la vado a rimuovere da quello precedente
-    //stessa cosa per i cerchi
+    
+    // 1 - SE l'immagine non è l'ultima da mostare:
+        // 1.1 - Togliere la classe active all'imagine attuale e metterla al successivo
+        // 1.2 - Togliere la classe active al pallino della bar di scorrimento, e metterla al successivo
+        // 1.3 - Incremento
+    // --- ALTRIMENTI non eseguo nessun cambiamento
+
+    if(itemActive < items.length - 1){
+
+        // Togliere la classe active all'imagine e del pallino attuale
+        items[itemActive].classList.remove("active");
+        circles[itemActive].classList.remove("active");
+
+        // Incremento
+        itemActive++;
+
+        // Aggiungere la classe active all'elemento successivo
+
+        items[itemActive].classList.add("active")
+        circles[itemActive].classList.add("active")
+
+        prev.classList.remove("hidden")
+        
+        if(itemActive === items.length - 1){
+            next.classList.add("hidden");
+        }
+    }
 });
 
 prev.addEventListener('click', function(){
-    //verifico l'elemento attivo (itemActive)
-    //decremento il suo valore di 1
-    //aggiungere la class active al nuovo elemento dell'array items e la vado a rimuovere da quello precedente
-    //stessa cosa per i cerchi
+    
+    // 1 - SE l'immagine non è la prima da mostare:
+        // 1.1 - Togliere la classe active all'imagine attuale e metterla al precedente
+        // 1.2 - Togliere la classe active al pallino della bar di scorrimento, e metterla al precedente
+        // 1.3 - Decremento
+    // --- ALTRIMENTI non eseguo nessun cambiamento
+
+    if(itemActive > 0){
+
+        // Togliere la classe active all'imagine e del pallino attuale
+        items[itemActive].classList.remove("active");
+        circles[itemActive].classList.remove("active");
+
+        // Decremento
+        itemActive--;
+
+        // Aggiungere la classe active all'elemento precedente
+
+        items[itemActive].classList.add("active")
+        circles[itemActive].classList.add("active")
+
+        next.classList.remove("hidden")
+
+        if(itemActive === 0){
+            prev.classList.add("hidden");
+        }        
+    }
 })
 
 
